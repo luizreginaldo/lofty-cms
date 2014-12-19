@@ -25,6 +25,8 @@
     <link rel="import" href="elements/elements.html">
     <link rel="import" href="bower_components/core-icons/core-icons.html">
     <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="bower_components/voice-elements/dist/voice-player.html">
+    <link rel="import" href="bower_components/voice-elements/dist/voice-recognition.html">
     <!-- endbuild-->
 
     <style>
@@ -40,10 +42,13 @@
 </head>
 
 <body >
+<!-- <voice-player autoplay accent="pt-BR" text="Bem vindo ao sistema seu usuário burro"></voice-player> -->
+
+<voice-player id="confirmLogout" accent="pt-BR" text="Deseja sair do sistema ?"></voice-player>
 
 <div layout="row" flex layout-fill>
 
-    <div layout="vertical" >
+    <div layout="vertical">
         <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('gt-md')">
             <md-toolbar class="md-theme-indigo">
                 <h1 class="md-toolbar-tools">MENU</h1>
@@ -61,11 +66,15 @@
     </div>
 
     <div flex layout="column" layout-fill>
-        <md-toolbar>
+        <md-toolbar ng-controller="ToolbarCtrl">
             <div class="md-toolbar-tools">
-                <span>My App's Title</span>
+                <md-button hide-gt-md><core-icon icon="menu"></core-icon></md-button>
+                <span>Lofty CMS</span>
                 <!-- fill up the space between left and right area -->
                 <span flex></span>
+                <md-button ng-click="logout($event)">
+                    <core-icon icon="exit-to-app"></core-icon>
+                </md-button>
             </div>
         </md-toolbar>
         <md-content layout="vertical" flex class="md-padding" layout-fill>
@@ -91,6 +100,7 @@
 
 <!-- build:js scripts/app.js -->
 <script src="scripts/app.js"></script>
+<script src="scripts/controller/ToolbarCtrl.js"></script>
 <!-- endbuild-->
 
 </body>
