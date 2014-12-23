@@ -33,6 +33,14 @@ class Authenticate implements Middleware {
 	 */
 	public function handle($request, Closure $next)
 	{
+		$headers = [
+			'Access-Control-Allow-Origin' => 'application/json',
+			'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS, PUT, DELETE',
+			'Access-Control-Allow-Headers' => 'Content-Type, X-Auth-Token, Origin, Authorization, X-Requested-With',
+			'Access-Control-Allow-Credentials' => 'true',
+			'Access-Control-Max-Age' => 600
+		];
+
 		if ($this->auth->guest())
 		{
 			if ($request->ajax())
@@ -45,7 +53,15 @@ class Authenticate implements Middleware {
 			}
 		}
 
-		return $next($request);
+		$response = $next($request);
+		foreach($headers as $k => $v)
+		{
+			if($response && isset($response->headers)){
+				$response->headers->set($k, $v);
+			}
+		}
+
+		return $response;
 	}
 
 }
