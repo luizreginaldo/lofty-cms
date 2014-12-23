@@ -3,7 +3,12 @@
  */
 (function(app){
 
-    function Ctrl($log, $scope, $mdDialog) {
+    function ToolbarCtrl($log, $rootScope, $scope, $mdDialog, $mdSidenav, AuthService, AUTH_EVENTS) {
+
+        this.openLeftMenu = function() {
+            $log.info('open left menu');
+            $mdSidenav('left').toggle();
+        };
 
         $scope.logout = function(ev) {
 
@@ -18,9 +23,12 @@
                 .targetEvent(ev);
 
             $mdDialog.show(confirm).then(function() {
-                $scope.alert = 'You decided to get rid of your debt.';
+                AuthService.logout().then(function(){
+                    $log.info('emit event logoutSuccess');
+                    $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+                });
             }, function() {
-                $scope.alert = 'You decided to keep your debt.';
+
             });
 
         }
@@ -29,9 +37,13 @@
 
     angular.module(app).controller('ToolbarCtrl', [
         '$log',
+        '$rootScope',
         '$scope',
         '$mdDialog',
-        Ctrl
+        '$mdSidenav',
+        'AuthService',
+        'AUTH_EVENTS',
+        ToolbarCtrl
     ]);
 
 })(app);
