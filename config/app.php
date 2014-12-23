@@ -78,7 +78,7 @@ return [
 	|
 	*/
 
-	'key' => env('APP_KEY') ?: 'YourSecretKey!!!',
+	'key' => env('APP_KEY') ?: 'u89ZWgOGv6vZJhDkEWkHfyEF6CMi6BE0',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -139,8 +139,7 @@ return [
 		'Illuminate\Session\SessionServiceProvider',
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
-		'Illuminate\View\ViewServiceProvider',
-
+		'Illuminate\View\ViewServiceProvider'
 	],
 
 	/*
