@@ -1,7 +1,9 @@
 {
   "name": "lofty-front",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "angular-cookies": "^1.3.7"
+  },
   "devDependencies": {
     "grunt": "^0.4.1",
     "grunt-contrib-sass": "^0.7.3",
