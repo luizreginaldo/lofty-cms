@@ -4,6 +4,7 @@
 (function(app){
 
     angular.module(app).service('Session', function () {
+        this.use = null;
         this.create = function (user) {
             this.user = user;
         };
