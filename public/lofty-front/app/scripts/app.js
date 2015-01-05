@@ -36,21 +36,23 @@ angular.module('lofty', [
     notAuthenticated: 'auth-not-authenticated',
     notAuthorized: 'auth-not-authorized'
 }).run([
-    '$log', '$rootScope', '$location', '$timeout', '$mdSidenav', 'AUTH_EVENTS', 'AuthService',
-    function ($log, $rootScope, $location, $timeout, $mdSidenav, AUTH_EVENTS, AuthService) {
-    $rootScope.$on('$routeChangeStart', function (event, next) {
+    '$log', '$rootScope', '$location', '$timeout', '$mdSidenav', 'AUTH_EVENTS', 'AuthService', 'Session',
+    function ($log, $rootScope, $location, $timeout, $mdSidenav, AUTH_EVENTS, AuthService, Session) {
+        $rootScope.$on('$routeChangeStart', function (event) {
 
-        AuthService.isAuthenticated().then(function(isAuthenticated){
-            if (!isAuthenticated) {
-                event.preventDefault();
+            if (!Session.user) {
+                AuthService.isAuthenticated().then(function (isAuthenticated) {
+                    if (!isAuthenticated) {
+                        event.preventDefault();
 
-                // user is not not authenticated
-                $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+                        // user is not not authenticated
+                        $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+                    }
+                });
             }
-        });
 
-    });
-}]).config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
+        });
+    }]).config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
 
     $routeProvider
         .when('/', {
