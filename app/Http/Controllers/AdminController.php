@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-class ApiController extends Controller {
+class AdminController extends Controller {
 
     /*
     |--------------------------------------------------------------------------
@@ -31,10 +31,6 @@ class ApiController extends Controller {
     public function getIndex()
     {
         return view('system');
-    }
-
-    public function anyCheckauth() {
-        return true;
     }
 
 }
