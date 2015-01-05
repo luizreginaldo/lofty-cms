@@ -10,6 +10,18 @@
 // http://www.polymer-project.org/platform/shadow-dom.html#wrappers
 })(wrap(document));
 
+window.baseurl = function (url) {
+    var base = 'http://spring_iatf_zplan/';
+
+    return base + url;
+
+};
+
+window.view = function (file) {
+    var file = file.replace('.html');
+    return baseurl('lofty-front/dist/scripts/views/') + file + '.html';
+};
+
 window.app = 'lofty';
 
 angular.module('lofty', [
@@ -23,19 +35,6 @@ angular.module('lofty', [
     sessionTimeout: 'auth-session-timeout',
     notAuthenticated: 'auth-not-authenticated',
     notAuthorized: 'auth-not-authorized'
-}).constant('baseurl', function(url){
-    var base = 'http://spring_iatf_zplan/';
-
-    if(url.toString().indexOf('sessions') > -1){
-
-        return base+url;
-
-    } else {
-
-        return base+'api/'+url;
-
-    }
-
 }).run([
     '$log', '$rootScope', '$location', '$timeout', '$mdSidenav', 'AUTH_EVENTS', 'AuthService',
     function ($log, $rootScope, $location, $timeout, $mdSidenav, AUTH_EVENTS, AuthService) {
