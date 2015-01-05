@@ -17,4 +17,4 @@ Route::get('logout', 'SessionsController@destroy');
 Route::post('logout', 'SessionsController@destroy');
 Route::resource('sessions', 'SessionsController');
 
-require __DIR__.'/../project/route.php';
+Route::get('/', 'WelcomeController@index');
