@@ -11,7 +11,7 @@
 })(wrap(document));
 
 window.baseurl = function (url) {
-    var base = 'http://spring_iatf_zplan/';
+    var base = 'http://lofty-cms/';
 
     return base + url;
 
@@ -27,7 +27,8 @@ window.app = 'lofty';
 angular.module('lofty', [
     'ngRoute',
     'ngCookies',
-    'ngMaterial'
+    'ngMaterial',
+    'ngResource'
 ]).constant('AUTH_EVENTS', {
     loginSuccess: 'auth-login-success',
     loginFailed: 'auth-login-failed',
@@ -56,7 +57,7 @@ angular.module('lofty', [
 
     $routeProvider
         .when('/', {
-            templateUrl: 'scripts/views/dashboard.html'
+            templateUrl: view('dashboard')
         })
         .when('/404', {
             templateUrl: '404.html'
@@ -69,5 +70,8 @@ angular.module('lofty', [
             return $injector.get('AuthInterceptor');
         }
     ]);
+
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 }]);
