@@ -3,39 +3,48 @@
  */
 (function (app) {
 
-    function AuthService($log, $rootScope, $http, Session, AUTH_EVENTS) {
+    function AuthService($log, $rootScope, $resource, Session, AUTH_EVENTS) {
         var authService = {};
+        var $request = $resource(
+            baseurl('sessions/:command'),
+            {},
+            {
+                login: {
+                    method: 'POST'
+                },
+                logout: {
+                    method: 'DELETE'
+                },
+                verify: {
+                    method: 'GET'
+                }
+            }
+        );
 
         authService.login = function (credentials) {
-            return $http
-                .post(baseurl('sessions'), credentials)
-                .then(function (res) {
+            return $request.login(credentials).$promise.then(function (res) {
                     $log.info(res);
 
-                    if(res.data.user) {
-                        Session.create(res.data.user);
-                        return res.data.user;
+                    if (res.user) {
+                        Session.create(res.user);
+                        return res.user;
                     }
 
                 });
         };
 
         authService.logout = function () {
-            return $http
-                .delete(baseurl('sessions'))
-                .then(function (response) {
+            return $request.logout().$promise.then(function (response) {
                     return true;
                 });
         };
 
         authService.isAuthenticated = function () {
-            return $http
-                .get(baseurl('sessions'))
-                .then(function (res) {
-                    if(res.data.user){
-                        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, res.data.user);
-                        Session.create(res.data.user);
-                        return res.data.user;
+            return $request.verify().$promise.then(function (res) {
+                    if (res.user) {
+                        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, res.user);
+                        Session.create(res.user);
+                        return res.user;
                     }
 
                 });
@@ -45,7 +54,7 @@
     }
 
     angular.module(app).factory('AuthService', [
-        '$log', '$rootScope', '$http', 'Session', 'AUTH_EVENTS', 'baseurl',
+        '$log', '$rootScope', '$resource', 'Session', 'AUTH_EVENTS',
         AuthService
     ])
 
