@@ -19,3 +19,9 @@ Route::delete('sessions', 'SessionsController@destroy');
 Route::resource('sessions', 'SessionsController');
 
 Route::get('/', 'WelcomeController@index');
+
+Route::group(array('before' => 'auth', 'prefix' => 'admin'), function()
+{
+    Route::get('/', 'AdminController@index');
+
+});
