@@ -10,6 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: *");
 
 Route::get('login', 'SessionsController@create');
 Route::post('login', 'SessionsController@store');
