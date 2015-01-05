@@ -3,7 +3,7 @@
  */
 (function (app) {
 
-    function ApplicationCtrl($scope, $rootScope, $http, $log, AUTH_EVENTS, baseurl) {
+    function ApplicationCtrl($scope, $rootScope, $http, $log, AUTH_EVENTS) {
         $scope.currentUser = null;
 
         $scope.setCurrentUser = function (user) {
@@ -26,7 +26,7 @@
 
     }
     angular.module(app).controller('ApplicationCtrl', [
-        '$scope', '$rootScope', '$http', '$log', 'AUTH_EVENTS', 'baseurl',
+        '$scope', '$rootScope', '$http', '$log', 'AUTH_EVENTS',
         ApplicationCtrl
     ]);
 

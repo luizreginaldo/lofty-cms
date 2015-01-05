@@ -3,7 +3,7 @@
  */
 (function (app) {
 
-    function AuthService($log, $rootScope, $http, Session, AUTH_EVENTS, baseurl) {
+    function AuthService($log, $rootScope, $http, Session, AUTH_EVENTS) {
         var authService = {};
 
         authService.login = function (credentials) {
