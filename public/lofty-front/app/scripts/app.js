@@ -67,7 +67,7 @@ angular.module('lofty', [
     $httpProvider.interceptors.push([
         '$injector',
         function ($injector) {
-            return $injector.get('AuthInterceptor');
+            return $injector.get('RequestInterceptor');
         }
     ]);
 
