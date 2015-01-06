@@ -6,7 +6,6 @@
     function ToolbarCtrl($log, $rootScope, $scope, $mdDialog, $mdSidenav, AuthService, AUTH_EVENTS) {
 
         this.openLeftMenu = function() {
-            $log.info('open left menu');
             $mdSidenav('left').toggle();
         };
 

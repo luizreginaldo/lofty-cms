@@ -1,28 +1,29 @@
 /**
  * Created by brunoferreirbrunoa on 1/6/15.
  */
-(function(app){
+(function (app) {
 
     function Modules() {
 
         var xtemplate = [
-            '<div ng-repeat="item in items">',
-                '<core-menu ng-if="!item.subitems">',
-                    '<paper-item ng-click="go(item.path)">',
+
+            '<section ng-repeat="item in items" flex>',
+                '<paper-shadow ng-if="!item.subitems" flex>',
+                    '<paper-item ng-click="go(item.path);toggleMenu()">',
                         '<core-icon icon="{{item.icon}}"></core-icon>',
-                            '{{item.name}}',
+                                '{{item.name}}',
                         '</core-icon>',
                     '</paper-item>',
-                '</core-menu>',
-                '<span tool ng-if="item.subitems">{{item.name}}</span>',
-                '<core-menu if="item.subitems" ng-repeat="subitem in item.subitems">',
-                    '<paper-item ng-click="go(subitem.path)">',
+                '</paper-shadow>',
+                '<h3 tool ng-if="item.subitems">{{item.name}}</h3>',
+                '<paper-shadow ng-if="item.subitems" flex>',
+                    '<paper-item ng-click="go(subitem.path);toggleMenu()" ng-repeat="subitem in item.subitems">',
                         '<core-icon icon="{{subitem.icon}}"></core-icon>',
                             '{{subitem.name}}',
                         '</core-icon>',
                     '</paper-item>',
-                '</core-menu>',
-            '</div>'
+                '<paper-shadow>',
+            '</section>'
         ].join('');
 
         return {
@@ -36,7 +37,7 @@
     }
 
     angular.module(app).directive('modules', [
-       Modules
+        Modules
     ]);
 
 })(app);
