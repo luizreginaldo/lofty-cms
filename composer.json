@@ -26,13 +26,13 @@
 	},
 	"scripts": {
 		"post-install-cmd": [
-			"php artisan clear-compiled",
-			"php artisan optimize",
 		  	"php artisan migrate",
 		  	"php artisan db:seed",
 		  	"cd public/lofty-front && bower install",
 		  	"cd public/lofty-front && sudo npm install",
-		  	"cd public/lofty-front && grunt build"
+		  	"cd public/lofty-front && grunt build",
+		  	"php artisan clear-compiled",
+		  	"php artisan optimize"
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",
