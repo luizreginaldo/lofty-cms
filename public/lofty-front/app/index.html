@@ -60,10 +60,10 @@
         </md-toolbar>
         <md-content layout="column" class="md-padding">
             <form is="ajax-form" method="POST" action="/login" ng-submit="submit()" onsubmit="return false" >
-                <paper-input-decorator label="E-mail" floatingLabel="true">
+                <paper-input-decorator label="E-mail" floatingLabel="true" isInvalid="{{errors.auth.email || false}}" error="{{errors.auth.email}}">
                     <input is="core-input" type="email" ng-model="credentials.email">
                 </paper-input-decorator>
-                <paper-input-decorator label="Senha" floatingLabel="true">
+                <paper-input-decorator label="Senha" floatingLabel="true" isInvalid="{{errors.auth.password || false}}" error="{{errors.auth.password}}">
                     <input is="core-input" type="password" ng-model="credentials.password">
                 </paper-input-decorator>
                 <md-button type="submit" class="md-raised md-primary" aria-label="Acessar">
@@ -141,7 +141,7 @@
 <!-- build:js scripts/app.js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/factory/AuthService.js"></script>
-<script src="scripts/factory/AuthInterceptor.js"></script>
+<script src="scripts/factory/RequestInterceptor.js"></script>
 <script src="scripts/service/Session.js"></script>
 <script src="scripts/directive/LoginDialog.js"></script>
 <script src="scripts/controller/ApplicationCtrl.js"></script>
