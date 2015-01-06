@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/spring_iatf_zplan.iml" filepath="$PROJECT_DIR$/.idea/spring_iatf_zplan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/LoftyCMS.iml" filepath="$PROJECT_DIR$/.idea/LoftyCMS.iml" />
     </modules>
   </component>
 </project>
