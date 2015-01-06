@@ -6,17 +6,27 @@
     function AuthService($log, $rootScope, $resource, Session, AUTH_EVENTS) {
         var authService = {};
         var $request = $resource(
-            baseurl('sessions/:command'),
+            baseurl('auth/:command'),
             {},
             {
                 login: {
-                    method: 'POST'
+                    method: 'POST',
+                    errorKey: 'auth',
+                    params: {
+                        command: 'login'
+                    }
                 },
                 logout: {
-                    method: 'DELETE'
+                    method: 'GET',
+                    params: {
+                        command: 'logout'
+                    }
                 },
                 verify: {
-                    method: 'GET'
+                    method: 'GET',
+                    params: {
+                        command: 'verify'
+                    }
                 }
             }
         );
