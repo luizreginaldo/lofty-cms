@@ -2,11 +2,10 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Http\Request;
+use App\Http\Requests\Auth\LoginRequest;
 use Response;
 
 class AuthController extends Controller {
-
 	/*
 	|--------------------------------------------------------------------------
 	| Registration & Login Controller
@@ -17,47 +16,37 @@ class AuthController extends Controller {
 	| a simple trait to add these behaviors. Why don't you explore it?
 	|
 	*/
-
 	use AuthenticatesAndRegistersUsers;
 
-	public function getLogin(Request $request) {
+	public function getLogin() {
 
 		return view('system');
 
 	}
 
-	public function postLogin(Request $request)
+	public function postLogin(LoginRequest $request)
 	{
-		/*$this->validate($request, [
-			'email' => 'required', 'password' => 'required',
-		]);*/
 
 		$credentials = $request->only('email', 'password');
 
-		if ($this->auth->attempt($credentials, $request->has('remember'))) {
-
+		if ($this->auth->attempt($credentials, $request->has('remember')))
+		{
 			return Response::json([
 				'success'	=> true,
-				'user'	=> $this->auth->user()
+				'user'		=> $this->auth->user()
 			]);
-
-		} else {
-
-			return Response::json([
-				'success'	=> false
-			]);
-
-		}
-	}
-
-	public function anyLogout() {
-
-		if(!$this->auth->guest()) {
-			$this->auth->logout();
 		}
 
 		return Response::json([
-			'success'	=> true
+			'success'	=> false
+		]);
+	}
+
+	public function getVerify() {
+
+		return Response::json([
+			'success'	=> true,
+			'user'		=> $this->auth->user()
 		]);
 
 	}
