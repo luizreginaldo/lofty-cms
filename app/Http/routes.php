@@ -11,12 +11,10 @@
 |
 */
 
-Route::get('login', 'SessionsController@create');
-Route::post('login', 'SessionsController@store');
-Route::get('logout', 'SessionsController@destroy');
-Route::delete('sessions', 'SessionsController@destroy');
-
-Route::resource('sessions', 'SessionsController');
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
 
 Route::get('/', 'WelcomeController@index');
 
