@@ -12,8 +12,6 @@
 
         $scope.logout = function(ev) {
 
-            document.querySelector('#confirmLogout').speak();
-
             var confirm = $mdDialog.confirm()
                 .title('Atenção')
                 .content('Deseja sair do Sistema ?')

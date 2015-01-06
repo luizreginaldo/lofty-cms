@@ -36,8 +36,6 @@
 </head>
 
 <body ng-controller="ApplicationCtrl as app">
-<!-- <voice-player autoplay accent="pt-BR" text="Bem vindo ao sistema seu usuário burro"></voice-player> -->
-<voice-player id="confirmLogout" accent="pt-BR" text="Deseja sair do sistema ?"></voice-player>
 
 <div id="clouds">
     <div class="cloud x1"></div>
@@ -86,16 +84,11 @@
                 <span flex></span>
             </md-toolbar>
             <md-content class="md-padding">
-                <md-button href="#/" class="md-primary">
-                    Home
-                </md-button>
-                <md-button href="#/dashboard" class="md-primary">
-                    Dashboard
-                </md-button>
-                <p hide-md show-gt-md>
-                    This sidenav is locked open on your device. To go back to the default behavior,
-                    narrow your display.
-                </p>
+                <core-menu>
+                    <paper-item>Cut</paper-item>
+                    <paper-item>Copy</paper-item>
+                    <paper-item>Paste</paper-item>
+                </core-menu>
             </md-content>
         </md-sidenav>
     </div>
