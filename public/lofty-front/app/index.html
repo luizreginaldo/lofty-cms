@@ -10,6 +10,11 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="bower_components/core-menu/core-menu.css"/>
+    <link rel="stylesheet" href="bower_components/core-menu/core-submenu.css"/>
+    <link rel="stylesheet" href="bower_components/core-collapse/core-collapse.css"/>
+    <link rel="stylesheet" href="bower_components/paper-dropdown/paper-dropdown-transition.css"/>
+    <link rel="stylesheet" href="bower_components/paper-dropdown-menu/paper-dropdown-menu.css"/>
 
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
@@ -83,12 +88,8 @@
                 <h1 class="md-toolbar-tools">MENU</h1>
                 <span flex></span>
             </md-toolbar>
-            <md-content class="md-padding">
-                <core-menu>
-                    <paper-item>Cut</paper-item>
-                    <paper-item>Copy</paper-item>
-                    <paper-item>Paste</paper-item>
-                </core-menu>
+            <md-content ng-controller="SidenavCtrl" class="md-padding">
+                <modules ></modules>
             </md-content>
         </md-sidenav>
     </div>
@@ -136,9 +137,10 @@
 <script src="scripts/factory/AuthService.js"></script>
 <script src="scripts/factory/RequestInterceptor.js"></script>
 <script src="scripts/service/Session.js"></script>
-<script src="scripts/directive/LoginDialog.js"></script>
+<script src="scripts/directive/Modules.js"></script>
 <script src="scripts/controller/ApplicationCtrl.js"></script>
 <script src="scripts/controller/ToolbarCtrl.js"></script>
+<script src="scripts/controller/SidenavCtrl.js"></script>
 <script src="scripts/controller/LoginCtrl.js"></script>
 <!-- endbuild-->
 
