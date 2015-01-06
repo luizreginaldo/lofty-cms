@@ -3,7 +3,7 @@
  */
 (function (app) {
 
-    function ApplicationCtrl($scope, $rootScope, $http, $log, AUTH_EVENTS) {
+    function ApplicationCtrl($scope, $location, $log, AUTH_EVENTS) {
 
         $scope.currentUser = null;
 
@@ -39,9 +39,13 @@
 
         });
 
+        $scope.go = function(path) {
+            $location.path(path);
+        };
+
     }
     angular.module(app).controller('ApplicationCtrl', [
-        '$scope', '$rootScope', '$http', '$log', 'AUTH_EVENTS',
+        '$scope', '$location', '$log', 'AUTH_EVENTS',
         ApplicationCtrl
     ]);
 
