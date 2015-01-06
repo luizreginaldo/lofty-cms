@@ -19,7 +19,7 @@ window.baseurl = function (url) {
 
 window.view = function (file) {
     var file = file.replace('.html');
-    return baseurl('lofty-front/dist/scripts/views/') + file + '.html';
+    return baseurl('lofty-front/dist/scripts/components/') + file + '.html';
 };
 
 window.app = 'lofty';
@@ -57,7 +57,7 @@ angular.module('lofty', [
 
     $routeProvider
         .when('/', {
-            templateUrl: view('dashboard')
+            templateUrl: 'lofty-front/dist/scripts/shared/views/dashboard.html'
         })
         .when('/404', {
             templateUrl: '404.html'
