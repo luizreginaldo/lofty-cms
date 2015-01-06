@@ -30,10 +30,9 @@
 			"php artisan optimize",
 		  	"php artisan migrate",
 		  	"php artisan db:seed",
-		  	"cd public/lofty-front",
-		  	"bower install",
-		  	"sudo npm install",
-		  	"grunt build"
+		  	"cd public/lofty-front && bower install",
+		  	"cd public/lofty-front && sudo npm install",
+		  	"cd public/lofty-front && grunt build"
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",
