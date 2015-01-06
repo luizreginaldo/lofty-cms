@@ -26,6 +26,7 @@
 	},
 	"scripts": {
 		"post-install-cmd": [
+		  	"cp .env.example .env",
 		  	"php artisan migrate",
 		  	"php artisan db:seed",
 		  	"cd public/lofty-front && bower install",
