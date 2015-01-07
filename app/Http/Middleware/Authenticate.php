@@ -2,8 +2,10 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use App\User as User;
+use \Illuminate\Http\Request;
 
-class Authenticate  {
+class Authenticate extends  AuthToken {
 
 	/**
 	 * The Guard implementation.
@@ -18,9 +20,9 @@ class Authenticate  {
 	 * @param  Guard  $auth
 	 * @return void
 	 */
-	public function __construct(Guard $auth)
+	public function __construct(Guard $auth, Request $request)
 	{
-		$this->auth = $auth;
+		parent::__construct($auth, $request);
 	}
 
 	/**
@@ -32,35 +34,25 @@ class Authenticate  {
 	 */
 	public function handle($request, Closure $next)
 	{
-		$headers = [
-			'Access-Control-Allow-Origin' => 'application/json',
-			'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS, PUT, DELETE',
-			'Access-Control-Allow-Headers' => 'Content-Type, X-Auth-Token, Origin, Authorization, X-Requested-With',
-			'Access-Control-Allow-Credentials' => 'true',
-			'Access-Control-Max-Age' => 600
-		];
 
 		if ($this->auth->guest())
 		{
-			if ($request->ajax())
-			{
+
+			if ($request->ajax()){
+
 				return response('Unauthorized.', 401);
+
 			}
-			else
-			{
+			else{
+
 				return redirect()->guest('auth/login');
+
 			}
+
 		}
 
-		$response = $next($request);
-		foreach($headers as $k => $v)
-		{
-			if($response && isset($response->headers)){
-				$response->headers->set($k, $v);
-			}
-		}
+		return $next($request);
 
-		return $response;
 	}
 
 }

@@ -4,8 +4,9 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\RedirectResponse;
 use Response;
+use \Illuminate\Http\Request;
 
-class RedirectIfAuthenticated {
+class RedirectIfAuthenticated extends AuthToken {
 
 	/**
 	 * The Guard implementation.
@@ -20,9 +21,9 @@ class RedirectIfAuthenticated {
 	 * @param  Guard  $auth
 	 * @return void
 	 */
-	public function __construct(Guard $auth)
+	public function __construct(Guard $auth, Request $request)
 	{
-		$this->auth = $auth;
+		parent::__construct($auth, $request);
 	}
 
 	/**
@@ -40,7 +41,8 @@ class RedirectIfAuthenticated {
 			if($request->ajax()){
 				return Response::json([
 					'success'	=> true,
-					'user'		=> $this->auth->user()
+					'user'		=> $this->auth->user(),
+					'access_token'	=> $this->auth->user()->access_token
 				]);
 			} else {
 				return new RedirectResponse(url('/admin'));
