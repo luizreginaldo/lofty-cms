@@ -3,50 +3,54 @@
  */
 (function (app) {
 
-    function ApplicationCtrl($scope, $location, $log, AUTH_EVENTS) {
+  function ApplicationCtrl($scope, $location, $log, $cookieStore, $http, AUTH_EVENTS) {
 
-        $scope.currentUser = null;
+    $scope.currentUser = null;
 
-        $scope.errors = {};
+    $scope.errors = {};
 
-        $scope.setCurrentUser = function (user) {
-            $scope.currentUser = user;
-        };
+    $scope.setCurrentUser = function (user) {
+      $scope.currentUser = user;
+      if(user.access_token) {
+        $cookieStore.put('access_token', user.access_token);
+        $http.defaults.headers.common['access_token'] = $cookieStore.get('access_token');
+      }
+    };
 
-        $scope.$on(AUTH_EVENTS.loginSuccess, function (e, user) {
-            $log.info('success');
-            $scope.setCurrentUser(user);
-        });
+    $scope.$on(AUTH_EVENTS.loginSuccess, function (e, user) {
+      $scope.setCurrentUser(user);
+    });
 
-        $scope.$on(AUTH_EVENTS.logoutSuccess, function () {
-            $log.info('logout');
-            $scope.currentUser = false;
-        });
+    $scope.$on(AUTH_EVENTS.logoutSuccess, function () {
+      $scope.currentUser = false;
+      $cookieStore.remove('access_token');
+    });
 
-        $scope.$on(AUTH_EVENTS.notAuthenticated, function(){
-            $log.info('notAuthenticated');
-        });
+    $scope.$on(AUTH_EVENTS.notAuthenticated, function () {
+      $cookieStore.remove('access_token');
+    });
 
-        $scope.$on('manageErrors', function(e, infoError){
+    $scope.$on('manageErrors', function (e, infoError) {
 
-            $scope.errors[infoError.key] = {};
+      $scope.errors[infoError.key] = {};
 
-            if(infoError.errors) {
-                for(key in infoError.errors) {
-                    $scope.errors[infoError.key][key] = infoError.errors[key][0];
-                }
-            }
+      if (infoError.errors) {
+        for (key in infoError.errors) {
+          $scope.errors[infoError.key][key] = infoError.errors[key][0];
+        }
+      }
 
-        });
+    });
 
-        $scope.go = function(path) {
-            $location.path(path);
-        };
+    $scope.go = function (path) {
+      $location.path(path);
+    };
 
-    }
-    angular.module(app).controller('ApplicationCtrl', [
-        '$scope', '$location', '$log', 'AUTH_EVENTS',
-        ApplicationCtrl
-    ]);
+  }
+
+  angular.module(app).controller('ApplicationCtrl', [
+    '$scope', '$location', '$log', '$cookieStore','$http', 'AUTH_EVENTS',
+    ApplicationCtrl
+  ]);
 
 })(app);
