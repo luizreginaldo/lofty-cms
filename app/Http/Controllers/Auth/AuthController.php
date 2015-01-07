@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Http\Requests\Auth\LoginRequest;
 use Response;
+use App\User as User;
+use \Illuminate\Http\Request;
 
 class AuthController extends Controller {
 	/*
@@ -31,10 +33,11 @@ class AuthController extends Controller {
 
 		if ($this->auth->attempt($credentials, $request->has('remember')))
 		{
-			return Response::json([
-				'success'	=> true,
-				'user'		=> $this->auth->user()
-			]);
+			$this->auth->user()->access_token = \Crypt::encrypt(str_random(30));
+			$this->auth->user()->save();
+
+			return $this->successAuth();
+
 		}
 
 		return Response::json([
@@ -42,13 +45,26 @@ class AuthController extends Controller {
 		]);
 	}
 
-	public function getVerify() {
+	public function getLogout(Request $request) {
+		if($request->ajax()) {
+			$this->auth->logout();
+			return $this->successAuth();
+		} else {
+			return redirect('/admin');
+		}
+	}
 
+	public function postGuest(Request $request) {
+
+		return $this->successAuth();
+	}
+
+	public function successAuth() {
 		return Response::json([
 			'success'	=> true,
-			'user'		=> $this->auth->user()
+			'user'		=> $this->auth->user(),
+			'access_token'	=> $this->auth->user()->access_token
 		]);
-
 	}
 
 }
