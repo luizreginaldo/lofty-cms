@@ -21,5 +21,6 @@ Route::get('/', 'WelcomeController@index');
 Route::group(array('before' => 'auth', 'prefix' => 'admin'), function()
 {
     Route::get('/', 'AdminController@index');
+    Route::post('/', 'AdminController@index');
 
 });
