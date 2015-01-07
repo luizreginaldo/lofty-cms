@@ -57,7 +57,7 @@ angular.module('lofty', [
 
     $routeProvider
         .when('/', {
-            templateUrl: 'lofty-front/dist/scripts/shared/views/dashboard.html'
+            templateUrl: view('dashboard/dashboard')
         })
         .when('/404', {
             templateUrl: '404.html'
