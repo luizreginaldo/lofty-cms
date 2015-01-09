@@ -19,7 +19,7 @@ class CreateAssignedRolesTable extends Migration {
 			$table->integer('role_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on(\Illuminate\Support\Facades\Config::get('auth.table'))
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
         });
 	}
 
