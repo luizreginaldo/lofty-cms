@@ -8,8 +8,8 @@
     var xtemplate = [
 
       '<section ng-repeat="item in items" flex>',
-      '<paper-shadow ng-if="!item.subitems" flex>',
-      '<paper-item ng-click="go(item.path);toggleMenu()">',
+      '<paper-shadow ng-if="!item.subitems" flex multi>',
+      '<paper-item ng-click="go(item.path);toggleMenu()" multi>',
       '<core-icon icon="{{item.icon}}"></core-icon>',
       '{{item.name}}',
       '</core-icon>',

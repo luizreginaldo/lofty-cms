@@ -63,7 +63,7 @@ class AuthController extends Controller {
 		return Response::json([
 			'success'	=> true,
 			'user'		=> $this->auth->user(),
-			'access_token'	=> $this->auth->user()->access_token
+			'access_token'	=> $this->auth->user() ? $this->auth->user()->access_token : ''
 		]);
 	}
 
