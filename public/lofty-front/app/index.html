@@ -62,8 +62,9 @@
                 </div>
             </div>
         </md-toolbar>
-        <md-content layout="column" class="md-padding">
-            <form is="ajax-form" method="POST" action="/login" ng-submit="submit()" onsubmit="return false" >
+        <md-content layout="column" layout-align="center center" class="md-padding">
+            <md-progress-circular md-mode="indeterminate" ng-if="loading"></md-progress-circular>
+            <form ng-if="!loading" is="ajax-form" method="POST" action="/login" ng-submit="submit()" onsubmit="return false" >
                 <paper-input-decorator label="E-mail" floatingLabel="true" isInvalid="{{errors.auth.email || false}}" error="{{errors.auth.email[0]}}">
                     <input is="core-input" type="email" ng-model="credentials.email">
                 </paper-input-decorator>
@@ -76,7 +77,6 @@
             </form>
         </md-content>
     </div>
-
 </div>
 
 

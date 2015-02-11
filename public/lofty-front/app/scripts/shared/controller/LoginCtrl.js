@@ -9,14 +9,19 @@
     $scope.errors = {
       auth: {}
     };
+    $scope.loading = false;
 
     $scope.submit = function () {
 
       $scope.errors.auth = {};
+      $scope.loading = true;
+
       AuthService.login($scope.credentials).then(function (res) {
         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, res);
       }, function () {
         $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+      }).finally(function(){
+        $scope.loading = false;
       });
 
     };
