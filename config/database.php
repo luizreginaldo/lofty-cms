@@ -55,9 +55,9 @@ return [
 		'mysql' => [
 			'driver'    => 'mysql',
 			'host'      => env('DB_HOST') ?: 'localhost',
-			'database'  => env('DB_DATABASE') ?: 'lofty',
-			'username'  => env('DB_USERNAME') ?: 'homestead',
-			'password'  => env('DB_PASSWORD') ?: 'secret',
+			'database'  => env('DB_DATABASE') ?: '',
+			'username'  => env('DB_USERNAME') ?: '',
+			'password'  => env('DB_PASSWORD') ?: '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
@@ -66,9 +66,9 @@ return [
 		'pgsql' => [
 			'driver'   => 'pgsql',
 			'host'      => env('DB_HOST') ?: 'localhost',
-			'database'  => env('DB_DATABASE') ?: 'lofty',
-			'username'  => env('DB_USERNAME') ?: 'homestead',
-			'password'  => env('DB_PASSWORD') ?: 'secret',
+			'database'  => env('DB_DATABASE') ?: '',
+			'username'  => env('DB_USERNAME') ?: '',
+			'password'  => env('DB_PASSWORD') ?: '',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
@@ -77,9 +77,9 @@ return [
 		'sqlsrv' => [
 			'driver'   => 'sqlsrv',
 			'host'      => env('DB_HOST') ?: 'localhost',
-			'database'  => env('DB_DATABASE') ?: 'lofty',
-			'username'  => env('DB_USERNAME') ?: 'homestead',
-			'password'  => env('DB_PASSWORD') ?: 'secret',
+			'database'  => env('DB_DATABASE') ?: '',
+			'username'  => env('DB_USERNAME') ?: '',
+			'password'  => env('DB_PASSWORD') ?: '',
 			'prefix'   => '',
 		],
 
