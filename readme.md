@@ -1,6 +1,6 @@
 # Lofty CMS
 
-I need to develop many websites projects at T4R SYSTEMS(http://www.t4r.com.br/), but them have no platform for develop administration area and don't like use wordpress or similars, because we work with especific situations and clients. So I created this project for help our work, including many features for help like that autentication, uploads, i18n, etc.
+I need to develop many websites projects at [T4R SYSTEMS](http://www.t4r.com.br/), but them have no platform for develop administration area and don't like use wordpress or similars, because we work with especific situations and clients. So I created this project for help our work, including many features for help like that autentication, uploads, i18n, etc.
 
 ## Frontend
 
