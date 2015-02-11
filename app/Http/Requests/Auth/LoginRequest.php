@@ -13,7 +13,8 @@ class LoginRequest extends Request {
     public function rules()
     {
         return [
-            'email' => 'required|email', 'password' => 'required',
+            'email' => 'required|email|exists:users', 
+            'password' => 'required',
         ];
     }
 
@@ -25,12 +26,6 @@ class LoginRequest extends Request {
     public function authorize()
     {
         return true;
-    }
-
-    public function response(array $errors) {
-        return new JsonResponse([
-            'errors'    => $errors
-        ]);
     }
 
 }
