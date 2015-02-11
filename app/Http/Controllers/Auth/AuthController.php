@@ -40,9 +40,7 @@ class AuthController extends Controller {
 
 		}
 
-		return Response::json([
-			'success'	=> false
-		]);
+		return \Response::json(['password'	=> [\Lang::get('messages.invalid_password')]], 422);
 	}
 
 	public function getLogout(Request $request) {
