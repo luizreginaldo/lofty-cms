@@ -9,18 +9,6 @@
         return config;
       },
       response: function (response) {
-        if (response.status === 401) {
-        }
-
-        if (response.config.errorKey) {
-
-          $rootScope.$broadcast('manageErrors', {
-            key: response.config.errorKey,
-            errors: response.data && response.data.errors ? response.data.errors : false
-          });
-
-        }
-
         return response || $q.when(response);
       },
       responseError: function (response) {
@@ -30,6 +18,11 @@
           419: AUTH_EVENTS.sessionTimeout,
           440: AUTH_EVENTS.sessionTimeout
         }[response.status], response);
+
+        if(response.status == 422) {
+          $rootScope.$broadcast('errors', response.data);
+        }
+
         return $q.reject(response);
       }
     };
