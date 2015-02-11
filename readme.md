@@ -1,23 +1,82 @@
-## Laravel PHP Framework
+# Lofty CMS
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+I need to develop many websites projects at T4R SYSTEMS(http://www.t4r.com.br/), but them have no platform for develop administration area and don't like use wordpress or similars, because we work with especific situations and clients. So I created this project for help our work, including many features for help like that autentication, uploads, i18n, etc.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## Frontend
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+ I am using AngularJS(https://angularjs.org/), Material Design(https://material.angularjs.org/#/) and Polymer(https://www.polymer-project.org/) for develop all features in frontend.
 
-## Official Documentation
+## Backend
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+I am using Laravel 5(http://laravel.com/) for backend.
 
-## Contributing
+## Getting started
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+### Dependencies
 
-### License
+To run this project you need to have:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+* [Composer](https://getcomposer.org/download/)
+ 
+* [Grunt](http://gruntjs.com/)
+
+        $ npm install -g grunt-cli
+
+### Step 1 - clone
+
+* Clone the project
+
+        $ git clone https://github.com/brunogonncalves/lofty-cms.git YOU-PROJECT-NAME
+
+* Enter project folder
+
+        $ cd YOUR-PROJECT-NAME
+
+
+### Step 2 - Setup Backend
+
+```bash
+$ composer install
+```
+
+```bash
+$ cp .env.example .env
+```
+enter with your server credentials in `.env`.
+
+execute migrations for create tables
+```bash
+$ php artisan migrate
+```
+
+execute seeds for populate your tables
+```bash
+$ php artisan db:seed
+```
+
+### Step 3 - Setup Frontend
+
+access frontend folder
+```bash
+$ cd public/lofty-front
+```
+
+install npm packages
+```bash
+$ npm install
+```
+
+download bower packages
+```bash
+$ bower install
+```
+
+build frontend files
+```bash
+$ grunt build
+```
+
+If everything goes OK, you can now run the project!
+
+## License
+Licensed under the MIT license (see MIT-LICENSE file)
