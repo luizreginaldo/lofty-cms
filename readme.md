@@ -4,11 +4,11 @@ I need to develop many websites projects at T4R SYSTEMS(http://www.t4r.com.br/),
 
 ## Frontend
 
- I am using AngularJS(https://angularjs.org/), Material Design(https://material.angularjs.org/#/) and Polymer(https://www.polymer-project.org/) for develop all features in frontend.
+ I am using [AngularJS](https://angularjs.org/), [Material Design](https://material.angularjs.org/#/) and [Polymer](https://www.polymer-project.org/) for develop all features in frontend.
 
 ## Backend
 
-I am using Laravel 5(http://laravel.com/) for backend.
+I am using [Laravel 5](http://laravel.com/) for backend.
 
 ## Getting started
 
