@@ -5,12 +5,14 @@
 
   function LoginCtrl($log, $rootScope, $scope, AuthService, AUTH_EVENTS) {
 
-    $log.info('login ctrl');
-
     $scope.credentials = {};
+    $scope.errors = {
+      auth: {}
+    };
 
     $scope.submit = function () {
 
+      $scope.errors.auth = {};
       AuthService.login($scope.credentials).then(function (res) {
         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, res);
       }, function () {
@@ -18,6 +20,10 @@
       });
 
     };
+
+    $scope.$on('errors', function(event, errors){
+      $scope.errors.auth = errors;
+    });
   };
 
   angular.module(app).controller('LoginCtrl', [
